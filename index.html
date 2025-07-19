@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task-2 Music Player</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="dark-theme">
+  <canvas id="visualizer"></canvas>
+  <div class="app-container">
+
+    <aside class="sidebar">
+      <h2>🎵 Music Player</h2>
+      
+      <button class="nav-btn active" data-target="overview">🏠 Overview</button>
+      <button class="nav-btn" data-target="search">🔍 Search</button>
+      <button class="nav-btn" data-target="library">🎧 Library</button>
+      <button class="nav-btn" data-target="categories">📚 Categories</button>
+    </aside>
+
+    <main class="main-content">
+      <section id="overview" class="main-section active">
+        <h1>🔥 Trending Tracks</h1>
+        <ul id="overviewList" class="song-grid"></ul>
+      </section>
+
+      <section id="search" class="main-section">
+        <h1>🔍 Search Songs</h1>
+        <div class="controls">
+          <input type="text" id="searchBar" placeholder="Type song name...">
+        </div>
+        <ul id="searchResults" class="song-grid"></ul>
+      </section>
+
+      <section id="library" class="main-section">
+        <h1>🎧 Your Library</h1>
+        <ul id="libraryList" class="song-grid"></ul>
+      </section>
+
+      <section id="categories" class="main-section">
+        <h1>📚 Categories</h1>
+        <div class="controls">
+          <select id="categorySelect">
+            <option value="all">All</option>
+            <option value="hiphop">Hip-Hop / Trap</option>
+            <option value="desi">Desi Urban</option>
+            <option value="lofi">Lo-Fi / Chill</option>
+            <option value="romantic">Romantic</option>
+            <option value="party">Party / EDM</option>
+          </select>
+        </div>
+        <ul id="categoryList" class="song-grid"></ul>
+      </section>
+    </main>
+
+    <div class="player floating-player">
+      <div class="left">
+        <img id="coverImage" class="cover" src="" alt="Cover">
+        <div class="song-details">
+          <h3 id="nowTitle">Not Playing</h3>
+          <p id="nowCategory">---</p>
+        </div>
+      </div>
+
+      <div class="center player-controls">
+       <button onclick="prevSong()">⏮</button>
+       <button onclick="toggleShuffle()" id="shuffleBtn">🔀</button>
+       <button onclick="togglePlayPause()" id="playPauseBtn">▶</button>
+       <button onclick="toggleRepeat()" id="repeatBtn">🔁</button>
+       <button onclick="nextSong()">⏭</button>
+      </div>
+
+      <div class="right">
+        <div class="seek-bar">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="progressBar" value="0" step="1">
+          <span id="duration">0:00</span>
+        </div>
+
+        <div class="volume-bar">
+          <span id="volumeLabel">Vol</span>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+          <span id="volumePercent">100%</span>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audioPlayer" src=""></audio>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
